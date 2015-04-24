@@ -3,10 +3,7 @@ function Mzmesh2(varargin)
 X= varargin{1};
 Y=varargin{2};
 Z = varargin{3};
-C = del2(Z);
 figure;
-% A = axes;
-
 if varargin{4}==1
     G=gradient(Z);
     h=mesh(X,Y,Z,abs(G));
