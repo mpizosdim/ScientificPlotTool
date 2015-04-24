@@ -1,4 +1,6 @@
 function Mzplot2(varargin)
+% Function to create black&white plots intended for use in scientific
+% papers.
 % MZPLOT2(X1,Y1,X2,Y2,...,X_N,Y_N,Legend1,Legend2,...,Legend_N,labelX,labelY,title,exportFigure,positionOfLegend,text,positionOfText)
 % exportFigure: 0 or 1 value
 % positionOfLegend: 1 for northwest, 2 for northeast, 3 for
@@ -16,7 +18,7 @@ function Mzplot2(varargin)
 % requirments in specific scientific plots. The difference can be
 % understood when exporting the file and viewing it in your pdf.
 
-lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};
+lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};change line style if you wish.
 N = (nargin-7)/3;
 figure
 for ii=1:2:2*N
