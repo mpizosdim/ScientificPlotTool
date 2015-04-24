@@ -10,8 +10,11 @@ function Mzplot2(varargin)
 % x = linspace(-2*pi,2*pi);
 % y1 = sin(x);
 % y2 = cos(x);
-% Mzplot2(x,y1,x,y2,'y = sin(x)','y = cos(x)','x','y','sine and cosine values of x',0,1,'This is a text',2);
-
+% y3 = cos(x).^2;
+% Mzplot2(x,y1,x,y2,x,y3,'y = sin(x)','y = cos(x)','y = cos(x)^2','x','y','sine and cosine values of x',0,3,'This is a text',4);
+% note: the plots generated are in black and white to fullfil some
+% requirments in specific scientific plots. The difference can be
+% understood when exporting the file and viewing it in your pdf. 
 
 lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};
 N = (nargin-7)/3;
