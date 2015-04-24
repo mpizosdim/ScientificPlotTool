@@ -1,8 +1,21 @@
 function Mzplot2(varargin)
-% Mzplot(X1,Y1,X2,Y2,...,XN,YN,Legend1,Legend2,...,LegendN,,labelX,labelY,title,exportFigure,position,text,textposition)
+% MZPLOT2(X1,Y1,X2,Y2,...,X_N,Y_N,Legend1,Legend2,...,Legend_N,labelX,labelY,title,exportFigure,positionOfLegend,text,positionOfText)
+% exportFigure: 0 or 1 value
+% positionOfLegend: 1 for northwest, 2 for northeast, 3 for
+% southwest, 4 for southeast
+% text: additional text for the plot
+% positionOfText:
+% example: 1 for northwest, 2 for northeast, 3 for
+% southwest, 4 for southeast
+% x = linspace(-2*pi,2*pi);
+% y1 = sin(x);
+% y2 = cos(x);
+% Mzplot2(x,y1,x,y2,'y = sin(x)','y = cos(x)','x','y','sine and cosine values of x',0,1,'This is a text',2);
+%
+
 lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};
 N = (nargin-7)/3;
-% figure
+figure
 for ii=1:2:2*N
     plot(varargin{ii},varargin{ii+1},lineStyle{ii},'MarkerSize',10)
     hold on
