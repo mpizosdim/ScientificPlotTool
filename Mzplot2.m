@@ -14,7 +14,7 @@ function Mzplot2(varargin)
 % Mzplot2(x,y1,x,y2,x,y3,'y = sin(x)','y = cos(x)','y = cos(x)^2','x','y','sine and cosine values of x',0,3,'This is a text',4);
 % note: the plots generated are in black and white to fullfil some
 % requirments in specific scientific plots. The difference can be
-% understood when exporting the file and viewing it in your pdf. 
+% understood when exporting the file and viewing it in your pdf.
 
 lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};
 N = (nargin-7)/3;
@@ -66,30 +66,30 @@ xlim([min(varargin{1}) max(varargin{1})])
 
 
 % if varargin{(((2*(nargin-7)/3)+1)+N+5)}~=0
-    RangeX = linspace(min(varargin{1}),max(varargin{1}),10);
-    RangeY = linspace(min(min(varargin{2}),min(varargin{4})),max(max(varargin{2}),max(varargin{4})),10);%change here
-    Text = cellstr(varargin{(((2*(nargin-7)/3)+1)+N+5)});
-    switch varargin{(((2*(nargin-7)/3)+1)+N+6)}
-        case 1
-            for ii=1:length(Text)
-                text(RangeX(2),RangeY(10-ii),Text(ii),'FontSize',16);
-            end
-        case 2
-            for ii=1:length(Text)
-                text(RangeX(9),RangeY(10-ii),Text(ii),'FontSize',16);
-            end
-        case 3
-            Text2 = Text(end:-1:1);
-            for ii=length(Text):-1:1
-                text(RangeX(2),RangeY(ii+1),Text2(ii),'FontSize',16);
-            end
-        case 4
-            Text2 = Text(end:-1:1);
-            for ii=length(Text):-1:1
-                text(RangeX(9),RangeY(ii+1),Text2(ii),'FontSize',16);
-            end
-    end
-    
+RangeX = linspace(min(varargin{1}),max(varargin{1}),10);
+RangeY = linspace(min(min(varargin{2}),min(varargin{4})),max(max(varargin{2}),max(varargin{4})),10);%change here
+Text = cellstr(varargin{(((2*(nargin-7)/3)+1)+N+5)});
+switch varargin{(((2*(nargin-7)/3)+1)+N+6)}
+    case 1
+        for ii=1:length(Text)
+            text(RangeX(2),RangeY(10-ii),Text(ii),'FontSize',16);
+        end
+    case 2
+        for ii=1:length(Text)
+            text(RangeX(9),RangeY(10-ii),Text(ii),'FontSize',16);
+        end
+    case 3
+        Text2 = Text(end:-1:1);
+        for ii=length(Text):-1:1
+            text(RangeX(2),RangeY(ii+1),Text2(ii),'FontSize',16);
+        end
+    case 4
+        Text2 = Text(end:-1:1);
+        for ii=length(Text):-1:1
+            text(RangeX(9),RangeY(ii+1),Text2(ii),'FontSize',16);
+        end
+end
+
 % end
 
 if varargin{(((2*(nargin-7)/3)+1)+N+3)}==1
