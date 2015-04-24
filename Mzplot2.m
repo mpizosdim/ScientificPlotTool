@@ -11,7 +11,7 @@ function Mzplot2(varargin)
 % y1 = sin(x);
 % y2 = cos(x);
 % Mzplot2(x,y1,x,y2,'y = sin(x)','y = cos(x)','x','y','sine and cosine values of x',0,1,'This is a text',2);
-%
+
 
 lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};
 N = (nargin-7)/3;
