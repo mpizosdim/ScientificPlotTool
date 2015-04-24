@@ -7,7 +7,6 @@ figure;
 if varargin{4}==1
     G=gradient(Z);
     h=mesh(X,Y,Z,abs(G));
-%     set(A,'Xscale','log')
     set(h,'FaceColor','interp')
     set(h,'EdgeColor','k')
     
