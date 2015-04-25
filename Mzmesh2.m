@@ -6,7 +6,12 @@ function Mzmesh2(varargin)
 % for ploting the gradient of the input data.
 % export : 0 for not exporting the figure in eps format, 1 for exporting the
 % figure in eps format.
-
+%------------Example 1------------------------
+%[X,Y] = meshgrid(-8:.5:8);
+%R = sqrt(X.^2 + Y.^2) + eps;
+%Z = sin(R)./R;
+%Mzmesh2(X,Y,Z,0,'X','Y','Z','Title',0)
+%--------------------------------------------
 X= varargin{1};
 Y=varargin{2};
 Z = varargin{3};
