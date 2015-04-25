@@ -1,5 +1,5 @@
 function Mzplot2(varargin)
-% Function to create black&white plots intended for use in scientific
+% Function to create plots intended for use in scientific
 % papers.
 %---------------explanation-------------
 % MZPLOT2(X1,Y1,X2,Y2,...,X_N,Y_N,Legend1,Legend2,...,Legend_N,labelX,labelY,title,exportFigure,positionOfLegend,text,positionOfText,ColoredPlot,MarkerStylePlot)
