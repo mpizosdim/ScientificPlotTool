@@ -31,7 +31,7 @@ function Mzplot2(varargin)
 % y3 = 2*tan(sin(x)) - sin(tan(x));
 % Mzplot2(x,y1,x,y2,x,y3,'tan(sin(x)) - sin(tan(x))','tan(sin(x)) - 2*sin(tan(x))','2*tan(sin(x)) - sin(tan(x))','x','y','',1,1,'',4,0,1);
 %-------------example 3----------------
-% Color plot. The figure is not exported.Without text.
+% Color plot. The figure is not exported.Without text and title.
 % x = -2:0.1:2;
 % y1 = x.^2;
 % y2 = 2*x.^2;
