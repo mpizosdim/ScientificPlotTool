@@ -17,8 +17,10 @@ function Mzplot2(varargin)
 % note: the plots generated are in black and white to fullfil some
 % requirments in specific scientific plots. The difference can be
 % understood when exporting the file and viewing it in your pdf.
+% note2: It's up to you to choose the size of the letters.But the one
+% specified in this code work good for articles/thesis/assignment plots.
 
-lineStyle = {'--','',':','','--*','',':o'};%{':gs','',':^','',':*','',':o'};change line style if you wish.
+lineStyle = {'--','',':','','--*','',':o'};%change line style if you wish.Other options:{':gs','',':^','',':*','',':o'};
 N = (nargin-7)/3;
 figure
 for ii=1:2:2*N
@@ -60,14 +62,14 @@ end
 grid on
 
 set(gca,'fontsize',17)
-set(h_legend,'FontSize',18)%change to 18 for the thesis
+set(h_legend,'FontSize',18)
 set(h_legend,'EdgeColor',[0.99 0.99 0.99])
 
 
 xlim([min(varargin{1}) max(varargin{1})])
 
 RangeX = linspace(min(varargin{1}),max(varargin{1}),10);
-RangeY = linspace(min(min(varargin{2}),min(varargin{4})),max(max(varargin{2}),max(varargin{4})),10);%change here
+RangeY = linspace(min(min(varargin{2}),min(varargin{4})),max(max(varargin{2}),max(varargin{4})),10);
 Text = cellstr(varargin{(((2*(nargin-7)/3)+1)+N+5)});
 switch varargin{(((2*(nargin-7)/3)+1)+N+6)}
     case 1
