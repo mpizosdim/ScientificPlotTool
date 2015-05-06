@@ -1,7 +1,7 @@
 function Mzplot2(varargin)
 % Function to create plots intended for use in scientific
 % papers.
-%---------------Explanation-------------
+%----------------------------- Explanation---------------------------------
 % MZPLOT2(X1,Y1,X2,Y2,...,X_N,Y_N,Legend1,Legend2,...,Legend_N,labelX,labelY,title,exportFigure,positionOfLegend,text,positionOfText,ColoredPlot,MarkerStylePlot)
 % exportFigure: 0 or 1 value, the plot is exported in eps format. It is
 % recommended generally to export to eps format when the plot is intended
@@ -15,14 +15,14 @@ function Mzplot2(varargin)
 % southwest, 4 for southeast
 % ColoredPlot: 0 for black&plot, 1 for colored plot
 % MarkerStylePlot: 0 for not marker style, 1 for marker style.Marker style is often used when having experimental data 
-%-------------Example 1------------------
+%------------------------------ EXAMPLE 1----------------------------------
 % black and white plot,with text, without exporting the plot
 % x = linspace(-2*pi,2*pi);
 % y1 = sin(x);
 % y2 = cos(x);
 % y3 = cos(x).^2;
 % Mzplot2(x,y1,x,y2,x,y3,'y = sin(x)','y = cos(x)','y = cos(x)^2','x','y','sine and cosine values of x',0,3,'This is a text',4,0,0);
-%-------------Example 2----------------
+%------------------------------ EXAMPLE 2----------------------------------
 % black and white plot with marker style, without text and title and the plot is
 % exported.
 % x = -pi:pi/5:pi;
@@ -30,14 +30,14 @@ function Mzplot2(varargin)
 % y2 = tan(sin(x)) - 2*sin(tan(x));
 % y3 = 2*tan(sin(x)) - sin(tan(x));
 % Mzplot2(x,y1,x,y2,x,y3,'tan(sin(x)) - sin(tan(x))','tan(sin(x)) - 2*sin(tan(x))','2*tan(sin(x)) - sin(tan(x))','x','y','',1,1,'',4,0,1);
-%-------------Example 3----------------
+%----------------------------- EXAMPLE 3-----------------------------------
 % Color plot. The figure is not exported.Without text and title.
 % x = -2:0.1:2;
 % y1 = x.^2;
 % y2 = 2*x.^2;
 % Mzplot2(x,y1,x,y2,'x^2','2*x^2','x','y','',0,1,'',4,1,0);
 %
-%------------notes---------------------
+%------------------------------- NOTES ------------------------------------
 % note: the plots generated are in black and white to fullfil some
 % requirments in specific scientific plots. The difference can be
 % understood when exporting the file and viewing it in your pdf.
@@ -46,7 +46,7 @@ function Mzplot2(varargin)
 % note3: the function is recommended to be used to generate the final plot in order to be
 % used for a document.
 % 
-%--------------------------------------
+%--------------------------------------------------------------------------
 N = (nargin-9)/3;
 if varargin{(((2*(nargin-9)/3)+1)+N+8)}==0
     lineStyle = {'--','',':','','-.','','-'};%change line style if you wish.Other options used for dot style:{':gs','','--^','','-*','',':o'};
