@@ -14,7 +14,7 @@ function Mzplot2(varargin)
 % positionOfText: 1 for northwest, 2 for northeast, 3 for
 % southwest, 4 for southeast
 % ColoredPlot: 0 for black&plot, 1 for colored plot
-% MarkerStylePlot: 0 for not marker style, 1 for marker style.Marker style is often used when having experimental data 
+% MarkerStylePlot: 0 for not marker style, 1 for marker style.Marker style is often used when having experimental data
 %------------------------------ EXAMPLE 1----------------------------------
 % black and white plot,with text, without exporting the plot
 % x = linspace(-2*pi,2*pi);
@@ -38,97 +38,113 @@ function Mzplot2(varargin)
 % Mzplot2(x,y1,x,y2,'x^2','2*x^2','x','y','',0,1,'',4,1,0);
 %
 %------------------------------- NOTES ------------------------------------
-% note: the plots generated are in black and white to fullfil some
+% note: the plots are generated to fullfil some
 % requirments in specific scientific plots. The difference can be
 % understood when exporting the file and viewing it in your pdf.
-% note2: It's up to you to choose the size of the letters.But the one
+% note2: It's up to you to choose the size of the letters. But the one
 % specified in this code work good for articles/thesis/assignment plots.
 % note3: the function is recommended to be used to generate the final plot in order to be
-% used for a document.
-% 
+% used for a document and not just to visualize some results.However just
+% to simply visualize results you can use the following code(example4):
+% x = -2:0.1:2;
+% y1 = x.^2;
+% y2 = 2*x.^2;
+% Mzplot2(x,y1,x,y2,'trial')
 %--------------------------------------------------------------------------
-N = (nargin-9)/3;
-if varargin{(((2*(nargin-9)/3)+1)+N+8)}==0
-    lineStyle = {'--','',':','','-.','','-'};%change line style if you wish.Other options used for dot style:{':gs','','--^','','-*','',':o'};
+if strcmp(varargin(end),'trial')
+    N = (nargin-1)/2;
+    lineStyle = {'--','',':','','-.','','-'};
+    figure
+    for ii=1:2:2*N
+        plot(varargin{ii},varargin{ii+1},lineStyle{ii},'MarkerSize',10)
+        hold on
+    end
+    grid on
+    set(gca,'fontsize',15)
+    set(findobj('Type','line'),'LineWidth',1.5)
 else
-    lineStyle = {':gs','','--^','','-*','',':o'};
+    N = (nargin-9)/3;
+    if varargin{(((2*(nargin-9)/3)+1)+N+8)}==0
+        lineStyle = {'--','',':','','-.','','-'};%change line style if you wish.Other options used for dot style:{':gs','','--^','','-*','',':o'};
+    else
+        lineStyle = {':gs','','--^','','-*','',':o'};
+    end
+    
+    figure
+    for ii=1:2:2*N
+        plot(varargin{ii},varargin{ii+1},lineStyle{ii},'MarkerSize',10)
+        hold on
+    end
+    if varargin{(((2*(nargin-9)/3)+1)+N+7)}==0
+        set(findobj('Type','line'),'Color','k')
+    end
+    set(findobj('Type','line'),'LineWidth',1.5)
+    
+    legends = varargin(((2*(nargin-9)/3)+1):(((2*(nargin-9)/3)+1)+N-1));
+    h_legend=legend(legends{:});
+    
+    switch varargin{(((2*(nargin-9)/3)+1)+N+4)}
+        case 1
+            set(h_legend,'Location','northwest')
+        case 2
+            set(h_legend,'Location','northeast')
+        case 3
+            set(h_legend,'Location','southwest')
+        case 4
+            set(h_legend,'Location','southeast')
+    end
+    
+    
+    xlabel(varargin{(((2*(nargin-9)/3)+1)+N)})
+    h_xlabel=get(gca,'Xlabel');
+    set(h_xlabel,'FontSize',19);
+    
+    ylabel(varargin{(((2*(nargin-9)/3)+1)+N+1)})
+    h_ylabel=get(gca,'Ylabel');
+    set(h_ylabel,'FontSize',19);
+    
+    if varargin{(((2*(nargin-9)/3)+1)+N+2)}~=0
+        title(varargin{(((2*(nargin-9)/3)+1)+N+2)})
+        h_title=get(gca,'title');
+        set(h_title,'FontSize',15,'FontWeight','Bold');
+    end
+    
+    grid on
+    
+    set(gca,'fontsize',17)
+    set(h_legend,'FontSize',18)
+    set(h_legend,'EdgeColor',[0.99 0.99 0.99])
+    
+    
+    xlim([min(varargin{1}) max(varargin{1})])
+    
+    RangeX = linspace(min(varargin{1}),max(varargin{1}),10);
+    RangeY = linspace(min(min(varargin{2}),min(varargin{4})),max(max(varargin{2}),max(varargin{4})),10);
+    Text = cellstr(varargin{(((2*(nargin-9)/3)+1)+N+5)});
+    switch varargin{(((2*(nargin-9)/3)+1)+N+6)}
+        case 1
+            for ii=1:length(Text)
+                text(RangeX(2),RangeY(10-ii),Text(ii),'FontSize',16);
+            end
+        case 2
+            for ii=1:length(Text)
+                text(RangeX(9),RangeY(10-ii),Text(ii),'FontSize',16);
+            end
+        case 3
+            Text2 = Text(end:-1:1);
+            for ii=length(Text):-1:1
+                text(RangeX(2),RangeY(ii+1),Text2(ii),'FontSize',16);
+            end
+        case 4
+            Text2 = Text(end:-1:1);
+            for ii=length(Text):-1:1
+                text(RangeX(9),RangeY(ii+1),Text2(ii),'FontSize',16);
+            end
+    end
+    
+    if varargin{(((2*(nargin-9)/3)+1)+N+3)}==1
+        scrsz = get(0,'ScreenSize');
+        set(gcf,'position',scrsz);
+        print -depsc Figure.eps
+    end
 end
-
-figure
-for ii=1:2:2*N
-    plot(varargin{ii},varargin{ii+1},lineStyle{ii},'MarkerSize',10)
-    hold on
-end
-if varargin{(((2*(nargin-9)/3)+1)+N+7)}==0
-    set(findobj('Type','line'),'Color','k')
-end
-set(findobj('Type','line'),'LineWidth',1.5)
-
-legends = varargin(((2*(nargin-9)/3)+1):(((2*(nargin-9)/3)+1)+N-1));
-h_legend=legend(legends{:});
-
-switch varargin{(((2*(nargin-9)/3)+1)+N+4)}
-    case 1
-        set(h_legend,'Location','northwest')
-    case 2
-        set(h_legend,'Location','northeast')
-    case 3
-        set(h_legend,'Location','southwest')
-    case 4
-        set(h_legend,'Location','southeast')
-end
-
-
-xlabel(varargin{(((2*(nargin-9)/3)+1)+N)})
-h_xlabel=get(gca,'Xlabel');
-set(h_xlabel,'FontSize',19);
-
-ylabel(varargin{(((2*(nargin-9)/3)+1)+N+1)})
-h_ylabel=get(gca,'Ylabel');
-set(h_ylabel,'FontSize',19);
-
-if varargin{(((2*(nargin-9)/3)+1)+N+2)}~=0
-    title(varargin{(((2*(nargin-9)/3)+1)+N+2)})
-    h_title=get(gca,'title');
-    set(h_title,'FontSize',15,'FontWeight','Bold');
-end
-
-grid on
-
-set(gca,'fontsize',17)
-set(h_legend,'FontSize',18)
-set(h_legend,'EdgeColor',[0.99 0.99 0.99])
-
-
-xlim([min(varargin{1}) max(varargin{1})])
-
-RangeX = linspace(min(varargin{1}),max(varargin{1}),10);
-RangeY = linspace(min(min(varargin{2}),min(varargin{4})),max(max(varargin{2}),max(varargin{4})),10);
-Text = cellstr(varargin{(((2*(nargin-9)/3)+1)+N+5)});
-switch varargin{(((2*(nargin-9)/3)+1)+N+6)}
-    case 1
-        for ii=1:length(Text)
-            text(RangeX(2),RangeY(10-ii),Text(ii),'FontSize',16);
-        end
-    case 2
-        for ii=1:length(Text)
-            text(RangeX(9),RangeY(10-ii),Text(ii),'FontSize',16);
-        end
-    case 3
-        Text2 = Text(end:-1:1);
-        for ii=length(Text):-1:1
-            text(RangeX(2),RangeY(ii+1),Text2(ii),'FontSize',16);
-        end
-    case 4
-        Text2 = Text(end:-1:1);
-        for ii=length(Text):-1:1
-            text(RangeX(9),RangeY(ii+1),Text2(ii),'FontSize',16);
-        end
-end
-
-if varargin{(((2*(nargin-9)/3)+1)+N+3)}==1
-    scrsz = get(0,'ScreenSize');
-    set(gcf,'position',scrsz);
-    print -depsc Figure.eps
-end
-
